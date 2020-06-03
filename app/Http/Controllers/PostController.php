@@ -38,4 +38,10 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('dashboard')->with(['message' => 'Message Deleted Successfully !!']);
     }
+    public function postEditPost(Request $request)
+    {
+        $this->validate($request, [
+            'body' => 'required|max:1000'
+        ]);
+    }
 }
