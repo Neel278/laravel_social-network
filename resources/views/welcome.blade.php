@@ -5,8 +5,10 @@ Welcome !
 @endsection
 
 @section('content')
+@include('includes.error-block')
 <div class="row">
     <div class="col-md-6">
+        <h4>Sign Up</h4>
         <form method="post" action="{{ route('signup') }}">
             @csrf
             <div class="form-group">
@@ -27,6 +29,7 @@ Welcome !
     </div>
     <div class="col-md-6">
         <form action="" method="">
+            <h4>Log In</h4>
             <div class="form-group">
                 <label for="login_email">Email address</label>
                 <input type="email" class="form-control" id="login_email" name="email" aria-describedby="emailHelp" placeholder="Enter email">

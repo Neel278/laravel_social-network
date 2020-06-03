@@ -10,7 +10,11 @@ class UserController extends Controller
     public function postSignUp(Request $request)
     {
         // validation
-
+        $this->validate($request, [
+            'email' => 'required|email|unique:users',
+            'first_name' => 'required|max:120',
+            'password' => 'required|min:4'
+        ]);
         // fetching info from signup form
         $email = $request['email'];
         $first_name = $request['first_name'];
