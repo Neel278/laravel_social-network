@@ -21,4 +21,9 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'UserController@postSignUp',
         'as' => 'signup'
     ]);
+    Route::get('/dashboard', [
+        'uses' => 'PostController@getDashboard',
+        'as' => 'dashboard',
+        'middleware' => 'auth'
+    ]);
 });

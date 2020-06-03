@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -26,6 +27,10 @@ class UserController extends Controller
         $user->first_name = $first_name;
         $user->password = $password;
         $user->save();
-        return redirect()->route('home');
+
+        // Authenticating user
+        Auth::login($user);
+
+        return redirect()->route('dashboard');
     }
 }
