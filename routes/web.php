@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('home');
+    Route::get('/', [
+        'uses' => 'UserController@checkLoggedIn',
+        'as' => 'home'
+    ]);
     Route::post('/signup', [
         'uses' => 'UserController@postSignUp',
         'as' => 'signup'
