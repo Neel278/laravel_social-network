@@ -26,4 +26,8 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'dashboard',
         'middleware' => 'auth'
     ]);
+    Route::post('/login', [
+        'uses' => 'UserController@postSignIn',
+        'as' => 'login'
+    ]);
 });

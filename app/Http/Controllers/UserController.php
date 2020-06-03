@@ -33,4 +33,15 @@ class UserController extends Controller
 
         return redirect()->route('dashboard');
     }
+    public function postSignIn(Request $request)
+    {
+        //validation
+
+        // Authenticated Login
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            return redirect('dashboard');
+        } else {
+            return redirect()->back();
+        }
+    }
 }

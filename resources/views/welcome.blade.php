@@ -28,7 +28,8 @@ Welcome !
         </form>
     </div>
     <div class="col-md-6">
-        <form action="" method="">
+        <form action="{{ route('login') }}" method="post">
+            @csrf
             <h4>Log In</h4>
             <div class="form-group">
                 <label for="login_email">Email address</label>
