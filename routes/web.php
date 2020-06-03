@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', [
-        'uses' => 'UserController@checkLoggedIn',
-        'as' => 'home'
-    ]);
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
     Route::post('/signup', [
         'uses' => 'UserController@postSignUp',
         'as' => 'signup'
@@ -34,5 +33,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/logout', [
         'uses' => 'UserController@getLogout',
         'as' => 'logout'
+    ]);
+    Route::post('/createpost', [
+        'uses' => 'PostController@postCreatePost',
+        'as' => 'createpost',
+        'middleware' => 'auth'
+    ]);
+    Route::get('/delete-post/{post_id}', [
+        'uses' => 'PostController@getDeletePost',
+        'as' => 'post.delete',
+        'middleware' => 'auth'
     ]);
 });

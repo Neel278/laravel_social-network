@@ -8,14 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function checkLoggedIn()
-    {
-        if (Auth::user()) {
-            return redirect('dashboard');
-        } else {
-            return view('welcome');
-        }
-    }
     public function postSignUp(Request $request)
     {
         // validation
