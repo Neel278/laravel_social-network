@@ -30,4 +30,8 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'UserController@postSignIn',
         'as' => 'login'
     ]);
+    Route::get('/logout', [
+        'uses' => 'UserController@getLogout',
+        'as' => 'logout'
+    ]);
 });
