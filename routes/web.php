@@ -48,4 +48,8 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'PostController@postEditPost',
         'as' => 'edit'
     ]);
+    Route::get('account', [
+        'uses' => 'UserController@getDashboard',
+        'as' => 'account'
+    ]);
 });

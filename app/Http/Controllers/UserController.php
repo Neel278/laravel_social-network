@@ -52,4 +52,8 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
+    public function getDashboard()
+    {
+        return view('account', ['user' => Auth::user()]);
+    }
 }
