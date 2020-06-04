@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,16 +55,33 @@ class PostController extends Controller
     }
     public function postLikePost(Request $request)
     {
-        //data fetch from $request
-
-        //check if already like or dislike is available or not
-
-        //if already available then check if it is same like to like or dislike to dislike
-
-        //if same like->like or dislike->dislike then cancel like or dislike(update)
-
-        //if they are not same then add new like or dislike(save)
-
-        //save or update all info accordingly
+        $post_id = $request['postId'];
+        $is_like = $request['isLike'] === 'true';
+        $update =  false;
+        $post = Post::find($post_id);
+        if (!$post) {
+            return null;
+        }
+        $user = Auth::user();
+        $like = $user->likes()->where('post_id', $post_id)->first();
+        if ($like) {
+            $already_like = $like->like;
+            $update = true;
+            if ($already_like == $is_like) {
+                $like->delete();
+                return null;
+            }
+        } else {
+            $like = new Like();
+        }
+        $like->like = $is_like;
+        $like->user_id = $user->id;
+        $like->post_id = $post->id;
+        if ($update) {
+            $like->update();
+        } else {
+            $like->save();
+        }
+        return null;
     }
 }
