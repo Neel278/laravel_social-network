@@ -52,4 +52,18 @@ class PostController extends Controller
         $post->update();
         return response()->json(['new_body' => $post->body], 200);
     }
+    public function postLikePost(Request $request)
+    {
+        //data fetch from $request
+
+        //check if already like or dislike is available or not
+
+        //if already available then check if it is same like to like or dislike to dislike
+
+        //if same like->like or dislike->dislike then cancel like or dislike(update)
+
+        //if they are not same then add new like or dislike(save)
+
+        //save or update all info accordingly
+    }
 }
